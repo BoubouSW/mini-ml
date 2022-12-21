@@ -1,0 +1,4 @@
+
+
+(let snd = fun (t: t) -> (t).b in
+(let t = { a = 3; b = false; } in if (snd t) then (t).a else ((t).a + 8)))

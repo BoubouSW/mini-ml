@@ -1,0 +1,15 @@
+
+
+(let bissextile =
+fun (a: int) -> (((a mod 400) == 0) || (((a mod 4) == 0) && (not  ((a mod 100) == 0)))) in
+(let jour_mois =
+fun (m: int) -> fun (a: int) -> if (((((((m == 1) || (m == 3)) || (m == 5)) || (
+                                       m == 7)) || (m == 8)) || (m == 10)) || (
+                                    m == 12)) then
+                                31 else
+                                if ((((m == 4) || (m == 6)) || (m == 9)) || (
+                                    m == 11)) then
+                                30 else
+                                if ((m == 2) && (bissextile a)) then 29 else
+                                28 in
+((jour_mois 2) 2020)))
