@@ -101,7 +101,7 @@ let eval_prog (p: prog): value =
     (*let n = new_ptr() in*)
     match evf with
     | VPtr(i) -> Hashtbl.add mem i (VClos(f,e,env)); VPtr(i)
-    | _ -> Printf.printf "test"; assert false
+    | _ -> assert false
   in
 
   eval p.code Env.empty

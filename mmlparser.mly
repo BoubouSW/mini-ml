@@ -85,7 +85,7 @@ expression:
 | IF e1=expression THEN e2=expression ELSE e3=expression { If(e1,e2,e3) }
 | FUN PAR_O i=IDENT DPOINTS t=typ PAR_F ARROW e=expression { Fun(i,t,e) }
 | LET f=IDENT tt=list(let_type_ann) AFF e1=expression IN e2=expression { Let(f,(mk_fun tt e1),e2) }
-| LET REC f=IDENT t0=rec_type_ann t1=fun_type_ann AFF e1=expression IN e2=expression { Let(f,Fix(f,TFun(t0,t1),e1),e2) }
+| LET REC f=IDENT t0=list(let_type_ann) t1=fun_type_ann AFF e1=expression IN e2=expression { Let(f,Fix(f,(mk_fun_type t0 t1),(mk_fun t0 e1)),e2) }
 | LET f=IDENT tt=list(let_type_ann) AFF ACC_O e1=list(aff_type) ACC_F IN e2=expression { Let(f,Strct(e1),e2) }
 | e1=expression PV e2=expression { Seq(e1,e2) }
 | e1=simple_expression POINT i=IDENT RARROW e2=expression { SetF(e1,i,e2) }
@@ -93,9 +93,6 @@ expression:
 
 let_type_ann:
 | PAR_O i=IDENT DPOINTS t=typ PAR_F { (i,t) }
-
-rec_type_ann:
-| PAR_O i=IDENT DPOINTS t=typ PAR_F { t }
 
 fun_type_ann:
 | DPOINTS t=typ { t }

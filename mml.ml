@@ -51,3 +51,9 @@ let rec mk_fun xs e = match xs with
 let rec mk_fun_type xs t = match xs with
   | [] -> t
   | (_, t')::xs -> TFun(t', mk_fun_type xs t)
+
+let fst pair = match pair with
+  | (e1,_) -> e1
+
+let snd pair = match pair with
+  | (_,e2) -> e2

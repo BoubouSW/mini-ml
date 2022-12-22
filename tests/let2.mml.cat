@@ -12,4 +12,4 @@ fun (m: int) -> fun (a: int) -> if (((((((m == 1) || (m == 3)) || (m == 5)) || (
                                 30 else
                                 if ((m == 2) && (bissextile a)) then 29 else
                                 28 in
-((jour_mois 2) 2020)))
+(((jour_mois 2) 2020) != ((jour_mois 2) 2019))))
