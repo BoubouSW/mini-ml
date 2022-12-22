@@ -1,0 +1,15 @@
+let rec somme_entiers (n:int) : int =
+  if n == 0 then
+    0
+  else
+    n + somme_entiers (n - 1)
+in
+
+let rec somme_carres (n:int) : int =
+  if n <= 0 then
+    0
+  else
+    ((n - 1) * (n - 1)) + somme_carres (n - 1)
+in
+
+somme_entiers 10 + somme_carres 10
