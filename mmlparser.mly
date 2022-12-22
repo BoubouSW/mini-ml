@@ -5,7 +5,7 @@
 
 %}
 
-%token PLUS STAR SLASH MINUS MOD NEG EGAL NEGAL INFSTR INFEGAL ESPESP BARBAR PV
+%token PLUS STAR SLASH MINUS MOD NEG EGAL NEGAL INFSTR INFEGAL ESPESP BARBAR PV SUPSTR SUPEGAL
 %token <int> CST
 %token <string> IDENT
 %token IF THEN ELSE
@@ -33,8 +33,8 @@
 %left MINUS PLUS
 %left STAR SLASH MOD
 
-%nonassoc INFSTR
-%nonassoc INFEGAL
+%nonassoc INFSTR SUPSTR
+%nonassoc INFEGAL SUPEGAL
 
 
 %nonassoc NEG
@@ -116,4 +116,6 @@ aff_type:
 | INFEGAL { Le }
 | ESPESP { And }
 | BARBAR { Or }
+| SUPSTR { NLt }
+| SUPEGAL { NLe }
 ;

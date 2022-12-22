@@ -31,7 +31,7 @@ let type_prog prog =
     | Uop(Neg,e) -> check e TInt tenv; TInt
     | Uop(Not,e) -> check e TBool tenv; TBool
     | Bop((And | Or), e1, e2) -> check e1 TBool tenv; check e2 TBool tenv; TBool
-    | Bop((Lt | Le), e1, e2) -> check e1 TInt tenv; check e2 TInt tenv; TBool
+    | Bop((Lt | Le | NLt | NLe), e1, e2) -> check e1 TInt tenv; check e2 TInt tenv; TBool
     | Bop((Eq | Neq), e1, e2) -> TBool  (*à préciser *)
     | If(e1,e2,e3) -> check e1 TBool tenv; let t1 = type_expr e2 tenv in
                                            let t2 = type_expr e3 tenv in
@@ -46,6 +46,10 @@ let type_prog prog =
                   | _ -> failwith "type error (fun)"
                   end
     | Strct(s) -> type_strct s tenv
+    (*| GetF(e,x) -> check e (TStrct(_)) tenv; let te = type_expr e tenv in (match te with 
+                                            | TStrct(s) -> let stc = SymTbl.find s tenv in stc.x
+                                            | _ -> assert false
+                                            ) *)
     | GetF(_,_) -> assert false
     | SetF(_,_,_) -> assert false
     | Seq (e1,e2) -> let t1 = type_expr e1 tenv in 

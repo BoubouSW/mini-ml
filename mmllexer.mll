@@ -89,6 +89,10 @@ rule token = parse
       { POINT }
   | "<-"
       { RARROW }
+  | ">"
+      { SUPSTR }
+  | ">="
+      { SUPEGAL }
   | eof
       { EOF }
   | _

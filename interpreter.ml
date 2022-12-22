@@ -53,6 +53,8 @@ let eval_prog (p: prog): value =
     | Uop(Not, e) -> VBool(not (evalb e env))
     | Bop(Lt,e1, e2) -> VBool(evali e1 env < evali e2 env)
     | Bop(Le,e1, e2) -> VBool(evali e1 env <= evali e2 env)
+    | Bop(NLt,e1, e2) -> VBool(evali e1 env > evali e2 env)
+    | Bop(NLe,e1, e2) -> VBool(evali e1 env >= evali e2 env)
     | Bop(Eq, e1, e2) -> (
     let v1 = eval e1 env in
     let v2 = eval e2 env in

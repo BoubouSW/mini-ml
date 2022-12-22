@@ -17,7 +17,7 @@ let rec typ_to_string = function
   | TStrct s -> s
 
 type uop = Neg | Not
-type bop = Add | Sub | Mul | Div | Mod | Eq | Neq | Lt | Le | And | Or
+type bop = Add | Sub | Mul | Div | Mod | Eq | Neq | Lt | Le | And | Or | NLt | NLe
 
 type expr =
   | Int   of int
