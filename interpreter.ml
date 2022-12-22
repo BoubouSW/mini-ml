@@ -97,11 +97,11 @@ let eval_prog (p: prog): value =
                         )
     | _ -> assert false
   and evalfix f e env =
-    let evf = eval e env in
-    (*let n = new_ptr() in*)
-    match evf with
-    | VPtr(i) -> Hashtbl.add mem i (VClos(f,e,env)); VPtr(i)
-    | _ -> assert false
+    
+    let n = new_ptr() in
+    Hashtbl.add mem n (VClos(f,e,(Env.add f (VPtr(n)) env)));
+    VPtr(n)
+    
   in
 
   eval p.code Env.empty
